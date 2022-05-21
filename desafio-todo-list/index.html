@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>TODO LIST</h1>
+        <h2>Be up-to-date with your tasks</h2>
+        <div class="mode-button">
+          <div class="button-circle"></div>
+          <div class="button-text">dark</div>
+        </div>
+      </header>
+      <main>
+        <div class="new-task-container">
+          <h3 class="new-task-text">create new task</h3>
+          <div class="new-task-input-container">
+            <form>
+              <input type="text" class="new-task-input" placeholder="" />
+              <input type="submit" class="new-task-button" value="create" />
+            </form>
+            <span class="empty-input-message">Please type in your task!</span>
+          </div>
+        </div>
+
+        <div class="text-button-wrapper">
+          <div class="title-icon-wrapper">
+            <h3>Tasks</h3>
+            <ion-icon class="icon task-icon" name="reader-outline"></ion-icon>
+          </div>
+          <button class="clean-all-button" type="reset">
+            Clean<ion-icon
+              class="icon trash-can-icon"
+              name="trash-outline"
+            ></ion-icon>
+          </button>
+        </div>
+        <ul class="tasks-container">
+          <!-- <li class="task-container">
+            <input type="checkbox" class="checkbox" /><span
+              contenteditable="true"
+              class="task"
+              >Kenedi</span
+            ><ion-icon class="icon edit-icon" name="pencil-outline"></ion-icon>
+          </li> -->
+        </ul>
+      </main>
+    </div>
+    <script src="script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
