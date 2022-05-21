@@ -113,6 +113,7 @@ form input[type="submit"] {
 
 .empty-input-message {
   display: none;
+  position: fixed;
   margin-top: 0.8rem;
   font-size: 1.2rem;
   color: #dc2626;
