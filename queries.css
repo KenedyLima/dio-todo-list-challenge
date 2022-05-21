@@ -2,7 +2,19 @@
   html {
     font-size: 8px;
   }
+
+  main {
+    width: 45%;
+  }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 500px) {
+  main {
+    width: 50%;
+  }
+
+  .mode-button {
+    top: 2.5rem;
+    right: 2.5rem;
+  }
 }
