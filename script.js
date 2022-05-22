@@ -7,6 +7,7 @@ const docBody = document.querySelector("body");
 const cleanAllTasksButton = document.querySelector(".clean-all-button");
 const newTaskInput = document.querySelector(".new-task-input");
 const emptyInputMessage = document.querySelector(".empty-input-message");
+let currentTheme;
 let checkboxes;
 let tasksStorage = [];
 
@@ -40,10 +41,10 @@ function generateTasksHTML(tasks) {
 function saveTask(task) {
   const taskObj = new Task(task);
   tasksStorage.push(taskObj);
-  updateLocalStorage();
+  updateTasksItemsOnLocalStorage();
 }
 
-function updateLocalStorage() {
+function updateTasksItemsOnLocalStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasksStorage));
 }
 
@@ -68,7 +69,7 @@ function getNoTasksLeftMessage() {
 function cleanAllTasks() {
   taskCount = 0;
   deleteTasks();
-  updateLocalStorage();
+  updateTasksItemsOnLocalStorage();
   insertHTMLInTasksContainer(getNoTasksLeftMessage());
 }
 
@@ -81,6 +82,7 @@ function showEmptyInputMessage() {
 }
 
 /*LIGHT MODE UPDATERS */
+
 function updateBodyStyle(isLight) {
   if (isLight) docBody.classList.add("light-mode-body");
   else docBody.classList.remove("light-mode-body");
@@ -100,6 +102,23 @@ function updateCleanButtonStyle(isLight) {
   if (isLight) cleanAllTasksButton.classList.add("light-mode-clean-button");
   else cleanAllTasksButton.classList.remove("light-mode-clean-button");
 }
+
+function updateCurrentThemeOnLocalStorage() {
+  localStorage.setItem("currentTheme", currentTheme);
+}
+
+function updateToLightModeStyle() {
+  updateBodyStyle(true);
+  updateCleanButtonStyle(true);
+  updateModeButtonStyle(true);
+}
+
+function updateToDarkModeStyle() {
+  updateBodyStyle(false);
+  updateCleanButtonStyle(false);
+  updateModeButtonStyle(false);
+}
+
 /* EVENT LISTENERS FUNCTIONS */
 
 function createNewTask(e) {
@@ -127,18 +146,14 @@ function loadAndDisplayTasksFromLocalStorage() {
   listenToCheckboxes();
 }
 
-function switchDisplayMode(e) {
+function switchTheme(e) {
   const button = e.target.closest(".mode-button");
   if (!button) return;
-  if (button.classList.contains("light-mode-button")) {
-    updateBodyStyle(false);
-    updateModeButtonStyle(false);
-    updateCleanButtonStyle(false);
-  } else {
-    updateBodyStyle(true);
-    updateModeButtonStyle(true);
-    updateCleanButtonStyle(true);
-  }
+  if (button.classList.contains("light-mode-button")) updateToDarkModeStyle();
+  else updateToLightModeStyle();
+
+  currentTheme = modeButton.querySelector(".button-text").textContent;
+  updateCurrentThemeOnLocalStorage();
 }
 
 function checkboxListener(e) {
@@ -152,15 +167,24 @@ function checkboxListener(e) {
     }
   });
 
-  updateLocalStorage();
+  updateTasksItemsOnLocalStorage();
+}
+
+function loadAndDisplayCurrentThemeFromLocalStorage() {
+  currentTheme = localStorage.getItem("currentTheme");
+  if (currentTheme == "light") updateToLightModeStyle();
+  else updateToDarkModeStyle();
 }
 
 /* EVENT LISTENERS*/
 newTaskButton.addEventListener("click", (e) => createNewTask(e));
 
-window.addEventListener("load", loadAndDisplayTasksFromLocalStorage);
+window.addEventListener("load", function (e) {
+  loadAndDisplayTasksFromLocalStorage();
+  loadAndDisplayCurrentThemeFromLocalStorage();
+});
 
-modeButton.addEventListener("click", (e) => switchDisplayMode(e));
+modeButton.addEventListener("click", (e) => switchTheme(e));
 
 cleanAllTasksButton.addEventListener("click", (e) => cleanAllTasks(e));
 
