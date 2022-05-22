@@ -13,8 +13,47 @@
     width: 50%;
   }
 
-  .mode-button {
-    top: 2.5rem;
-    right: 2.5rem;
+  html {
+    font-size: 8px;
   }
+
+  .button-circle {
+    display: none;
+  }
+
+  .mode-button {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    background-color: #1ba9be;
+    border: none;
+  }
+
+  .mode-button::after {
+    content: "";
+    border: 3px solid black;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 50%;
+  }
+
+  .light-mode-button.mode-button::after {
+    border: 3px solid #e2e8f0;
+  }
+
+  .light-mode-button > .button-text,
+  .button-text {
+    display: inline-block;
+    left: auto;
+    top: 100%;
+    right: 50%;
+    transform: translate(50%, 50%);
+  }
+}
+
+@media (max-width: 420px) {
 }

@@ -236,6 +236,10 @@ form input[type="submit"]:hover {
   cursor: pointer;
 }
 
+.mode-button-small-size-screen {
+  display: none;
+}
+
 .button-circle {
   position: absolute;
   height: 3.5rem;
