@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+body {
+  position: relative;
+}
+
+.complete-card {
+  transform-style: preserve-3d;
+  transition: transform 600ms;
+}
+
+.complete-card:active {
+  transform: scale(0.97);
+}
+
+.card {
+  width: 15rem;
+  height: 15rem;
+  border: 5px solid #f1cf3b;
+  cursor: pointer;
+  position: absolute;
+}
+
+.backcard {
+  backface-visibility: hidden;
+}
+
+.cards-container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 15rem);
+  grid-template-rows: repeat(3, 15rem);
+  align-content: center;
+  justify-content: center;
+  gap: 10px;
+  background-image: linear-gradient(45deg, #164e63, #0f766e, #059669);
+  perspective: 1000px;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
